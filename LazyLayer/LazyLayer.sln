@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Core", "LazyLayer.Core\LazyLayer.Core.csproj", "{34095554-6C28-49B2-8F39-E8AE7494F9F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Http", "LazyLayer.Http\LazyLayer.Http.csproj", "{FD797492-56C7-4C05-8E04-841C37F04F9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggingProviders", "LoggingProviders", "{2E42F187-5256-43AE-8EF5-885F8D0A7231}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{19C57FC8-31CD-4E66-84CA-CCF489A1C947}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Serilog", "LazyLayer.Serilog\LazyLayer.Serilog.csproj", "{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Serilog.Test", "LazyLayer.Serilog.Test\LazyLayer.Serilog.Test.csproj", "{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Example.Core", "LazyLayer.Example.Core\LazyLayer.Example.Core.csproj", "{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Example.WebApi", "LazyLayer.Example.WebApi\LazyLayer.Example.WebApi.csproj", "{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34095554-6C28-49B2-8F39-E8AE7494F9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34095554-6C28-49B2-8F39-E8AE7494F9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34095554-6C28-49B2-8F39-E8AE7494F9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34095554-6C28-49B2-8F39-E8AE7494F9F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD797492-56C7-4C05-8E04-841C37F04F9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD797492-56C7-4C05-8E04-841C37F04F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD797492-56C7-4C05-8E04-841C37F04F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD797492-56C7-4C05-8E04-841C37F04F9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E} = {2E42F187-5256-43AE-8EF5-885F8D0A7231}
+		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8} = {2E42F187-5256-43AE-8EF5-885F8D0A7231}
+		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667} = {19C57FC8-31CD-4E66-84CA-CCF489A1C947}
+		{8D9670E8-9CF2-4E2D-9870-AA8EE5AC5ED8} = {19C57FC8-31CD-4E66-84CA-CCF489A1C947}
+	EndGlobalSection
+EndGlobal
