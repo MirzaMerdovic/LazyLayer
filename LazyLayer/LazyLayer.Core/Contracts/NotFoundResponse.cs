@@ -15,7 +15,7 @@ namespace LazyLayer.Core.Contracts
         /// <summary>
         /// <see cref="IResponseStatus.Status"/>.
         /// </summary>
-        public override ResponseStatus Status => ResponseStatus.NotFound;
+        public override ResponseStatus Status { get; }
 
         /// <summary>
         /// Initializes new instance of <see cref="NotFoundResponse"/>.
@@ -24,6 +24,7 @@ namespace LazyLayer.Core.Contracts
         /// <param name="id"><see cref="Id"/>.</param>
         public NotFoundResponse(Guid correlationId, int id) : base(correlationId)
         {
+            Status = ResponseStatus.NotFound;
             Id = id;
             Message = $"Entity: {id} does not exist!";
         }

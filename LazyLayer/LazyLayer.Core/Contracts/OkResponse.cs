@@ -10,7 +10,7 @@ namespace LazyLayer.Core.Contracts
         /// <summary>
         /// <see cref="IResponseStatus.Status"/>.
         /// </summary>
-        public override ResponseStatus Status => ResponseStatus.Success;
+        public override ResponseStatus Status { get; }
 
         /// <summary>
         /// Initializes new instance of <see cref="OkResponse"/>.
@@ -18,6 +18,7 @@ namespace LazyLayer.Core.Contracts
         /// <param name="correlationId"><see cref="BaseResponse.CorrelationId"/>.</param>
         public OkResponse(Guid correlationId) : base(correlationId)
         {
+            Status = ResponseStatus.Success;
         }
 
         public override string ToString()

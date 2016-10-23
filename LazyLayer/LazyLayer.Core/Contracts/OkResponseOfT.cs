@@ -11,7 +11,7 @@ namespace LazyLayer.Core.Contracts
         /// <summary>
         /// <see cref="IResponseStatus.Status"/>
         /// </summary>
-        public override ResponseStatus Status => ResponseStatus.Found;
+        public override ResponseStatus Status { get; }
 
         /// <summary>
         /// Initializes new instance of <see cref="OkResponse"/>
@@ -20,6 +20,7 @@ namespace LazyLayer.Core.Contracts
         /// <param name="content">Response content. Usually a query result.</param>
         public OkResponse(Guid correlationId, T content) : base(correlationId, content)
         {
+            Status = ResponseStatus.Found;
         }
     }
 }

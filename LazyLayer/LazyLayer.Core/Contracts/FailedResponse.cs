@@ -20,6 +20,7 @@ namespace LazyLayer.Core.Contracts
         /// <param name="methodName">Method that caused the failure.</param>
         public FailedResponse(Guid correlationId, Exception exception, string methodName) : base(correlationId)
         {
+            Status = ResponseStatus.Failure;
             Exception = exception;
             Message = $"{methodName} failed with error: {exception.Message}";
         }
@@ -32,13 +33,14 @@ namespace LazyLayer.Core.Contracts
         /// <param name="methodName">Method that caused the failure.</param>
         public FailedResponse(Guid correlationId, string errorMessage, string methodName) : base(correlationId)
         {
+            Status = ResponseStatus.Failure;
             Message = $"{methodName} failed with error: {errorMessage}";
         }
 
         /// <summary>
         /// <see cref="IResponseStatus.Status"/>.
         /// </summary>
-        public override ResponseStatus Status => ResponseStatus.Failure;
+        public override ResponseStatus Status { get; }
 
         public override string ToString()
         {
