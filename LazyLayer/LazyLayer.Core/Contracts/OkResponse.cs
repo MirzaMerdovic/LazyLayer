@@ -10,7 +10,7 @@ namespace LazyLayer.Core.Contracts
         /// <summary>
         /// <see cref="IResponseStatus.Status"/>.
         /// </summary>
-        public override ResponseStatus Status => ResponseStatus.Found;
+        public override ResponseStatus Status => ResponseStatus.Success;
 
         /// <summary>
         /// Initializes new instance of <see cref="OkResponse"/>.
