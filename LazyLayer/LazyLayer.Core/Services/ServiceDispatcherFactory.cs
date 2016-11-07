@@ -13,18 +13,5 @@ namespace LazyLayer.Core.Services
         {
             return new ServiceDispatcher<T>(convertor.ConvertResponse, logger);
         }
-
-        public static IServiceDispatcher<T> Create(IResponseConversionProvider<T> convertor, IValidationProvider validator)
-        {
-            return new ServiceDispatcher<T>(convertor.ConvertResponse, null, validator);
-        }
-
-        public static IServiceDispatcher<T> Create(
-            IResponseConversionProvider<T> convertor, 
-            ILogProvider logger, 
-            IValidationProvider validator)
-        {
-            return new ServiceDispatcher<T>(convertor.ConvertResponse, logger, validator);
-        }
     }
 }

@@ -65,10 +65,8 @@
     <Compile Include="Providers\NullLogProvider.cs" />
     <Compile Include="Providers\IResponseConversionProvider.cs" />
     <Compile Include="Services\IServiceDispatcher.cs" />
-    <Compile Include="Services\IServiceExecutor.cs" />
     <Compile Include="Services\ServiceDispatcher.cs" />
     <Compile Include="Services\ServiceDispatcherFactory.cs" />
-    <Compile Include="Services\ServiceExecutor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

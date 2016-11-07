@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using LazyLayer.Core.Contracts;
-using LazyLayer.Core.Providers;
 
 namespace LazyLayer.Core.Services
 {
@@ -11,8 +10,6 @@ namespace LazyLayer.Core.Services
     /// <typeparam name="TResponse"></typeparam>
     public interface IServiceDispatcher<TResponse>
     {
-        ILogProvider Logger { get; }
-
         /// <summary>
         /// Executes specified method and returns converted response that calling layer understands.
         /// </summary>

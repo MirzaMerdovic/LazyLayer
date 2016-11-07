@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using LazyLayer.Core.Contracts;
 using LazyLayer.Core.Providers;
@@ -12,7 +13,8 @@ namespace LazyLayer.Core.Services
     public class ServiceDispatcher<TResponse> : IServiceDispatcher<TResponse>
     {
         private readonly Func<BaseResponse, TResponse> _converter;
-        private readonly IServiceExecutor _executor;
+
+        private readonly ILogProvider _logger;
 
         #region Constructors
 
@@ -26,12 +28,15 @@ namespace LazyLayer.Core.Services
         {
         }
 
-
-        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger) : this(converter, logger, null)
-        {
-        }
-
-        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger, IValidationProvider validator)
+        /// <summary>
+        /// Initializes new instance of <see cref="ServiceDispatcher{TResponse}"/>
+        /// </summary>
+        /// <param name="converter">
+        /// Delegate that implements logic for conversion of <see cref="BaseResponse"/> to <see cref="TResponse"/>.</param>
+        /// <param name="logger">Implementation of <see cref="ILogProvider"/> interface.
+        /// <remarks>If value is null <see cref="NullLogProvider"/> will be used, which does nothing.</remarks>
+        /// </param>
+        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger)
         {
             _converter = converter;
 
@@ -40,43 +45,47 @@ namespace LazyLayer.Core.Services
                 Guard.ThrowIfNull(_converter, nameof(_converter));
             }
 
-            Logger = logger ?? new NullLogProvider();
-            _executor = new ServiceExecutor(logger, validator);
+            _logger = logger ?? new NullLogProvider();
         }
 
         #endregion
 
         #region IServiceDispatcher
 
-        public ILogProvider Logger { get; }
-
         public async Task<TResponse> ExecuteAsync(ServiceRequest request, Func<Task> action)
         {
             Guard.ThrowIfNull(request, nameof(request));
             Guard.ThrowIfNull(action, nameof(action));
 
+            BaseResponse response;
+            _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
+
+            var timer = new Stopwatch();
+
             try
             {
-                Logger.Verbose(request.CorrelationId, $"Received request: {request} at: {DateTime.UtcNow}");
+                timer.Start();
+                await action();
+                timer.Stop();
 
-                var response = await _executor.Invoke(request, action);
-                var convertedResponse = _converter(response);
+                _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}.");
 
-                return convertedResponse;
+                response = new OkResponse(request.CorrelationId);
             }
             catch (Exception ex)
             {
-                Logger.Fatal(
-                    request.CorrelationId,
-                    $"Unexpected error occurred: {Environment.NewLine}{ex.Message}." +
-                    "{Environment.NewLine}Stack trace:{Environment.NewLine}{ex}");
+                _logger.Error(request.CorrelationId, ex, $"{action.Method.Name} => Failed.");
 
-                throw;
+                response = new FailedResponse(request.CorrelationId, ex, action.Method.Name);
             }
             finally
             {
-                Logger.Verbose(request.CorrelationId, "Request processed.");
+                _logger.Information(request.CorrelationId, $"{action.Method.Name} => Finished.");
             }
+
+            var convertedResponse = _converter(response);
+
+            return convertedResponse;
         }
 
         public async Task<TResponse> ExecuteAsync<TContent>(ServiceRequest<TContent> request, Func<TContent, Task> action)
@@ -84,28 +93,35 @@ namespace LazyLayer.Core.Services
             Guard.ThrowIfNull(request, nameof(request));
             Guard.ThrowIfNull(action, nameof(action));
 
+            _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
+
+            BaseResponse response;
+            var timer = new Stopwatch();
+
             try
             {
-                Logger.Verbose(request.CorrelationId, $"Received request: {request} at: {DateTime.UtcNow}");
+                timer.Start();
+                await action(request.Content);
+                timer.Stop();
 
-                var response = await _executor.Invoke(request, action);
-                var convertedResponse = _converter(response);
+                _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}");
 
-                return convertedResponse;
+                response = new OkResponse(request.CorrelationId);
             }
             catch (Exception ex)
             {
-                Logger.Fatal(
-                    request.CorrelationId,
-                    $"Unexpected error occurred: {Environment.NewLine}{ex.Message}." +
-                    "{Environment.NewLine}Stack trace:{Environment.NewLine}{ex}");
+                _logger.Error(request.CorrelationId, ex, $"{action.Method.Name} => Failed.");
 
-                throw;
+                response = new FailedResponse(request.CorrelationId, ex, action.Method.Name);
             }
             finally
             {
-                Logger.Verbose(request.CorrelationId, "Request processed.");
+                _logger.Information(request.CorrelationId, $"{action.Method.Name} => Finished");
             }
+
+            var convertedResponse = _converter(response);
+
+            return convertedResponse;
         }
 
         public async Task<TResponse> ExecuteAsync<TResult>(ServiceRequest request, Func<Task<TResult>> action)
@@ -113,28 +129,35 @@ namespace LazyLayer.Core.Services
             Guard.ThrowIfNull(request, nameof(request));
             Guard.ThrowIfNull(action, nameof(action));
 
+            _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
+
+            BaseResponse response;
+            var timer = new Stopwatch();
+
             try
             {
-                Logger.Verbose(request.CorrelationId, $"Received request: {request} at: {DateTime.UtcNow}");
+                timer.Start();
+                var result = await action();
+                timer.Stop();
 
-                var response = await _executor.Invoke(request, action);
-                var convertedResponse = _converter(response);
+                _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}");
 
-                return convertedResponse;
+                response = new OkResponse<TResult>(request.CorrelationId, result);
             }
             catch (Exception ex)
             {
-                Logger.Fatal(
-                    request.CorrelationId,
-                    $"Unexpected error occurred: {Environment.NewLine}{ex.Message}." +
-                    "{Environment.NewLine}Stack trace:{Environment.NewLine}{ex}");
+                _logger.Error(request.CorrelationId, ex, $"{action.Method.Name} => Failed.");
 
-                throw;
+                response = new FailedResponse(request.CorrelationId, ex, action.Method.Name);
             }
             finally
             {
-                Logger.Verbose(request.CorrelationId, "Request processed.");
+                _logger.Information(request.CorrelationId, $"{action.Method.Name} => Finished");
             }
+
+            var convertedResponse = _converter(response);
+
+            return convertedResponse;
         }
 
         /// <summary>
@@ -145,28 +168,34 @@ namespace LazyLayer.Core.Services
             Guard.ThrowIfNull(request, nameof(request));
             Guard.ThrowIfNull(action, nameof(action));
 
+            _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
+            BaseResponse response;
+            var timer = new Stopwatch();
+
             try
             {
-                Logger.Verbose(request.CorrelationId, $"Received request: {request} at: {DateTime.UtcNow}");
+                timer.Start();
+                var result = await action(request.Content);
+                timer.Stop();
 
-                var response = await _executor.Invoke(request, action);
-                var convertedResponse = _converter(response);
+                _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}");
 
-                return convertedResponse;
+                response = new OkResponse<TResult>(request.CorrelationId, result);
             }
             catch (Exception ex)
             {
-                Logger.Fatal(
-                    request.CorrelationId,
-                    $"Unexpected error occurred: {Environment.NewLine}{ex.Message}." +
-                    "{Environment.NewLine}Stack trace:{Environment.NewLine}{ex}");
+                _logger.Error(request.CorrelationId, ex, $"{action.Method.Name} => Failed.");
 
-                throw;
+                response = new FailedResponse(request.CorrelationId, ex, action.Method.Name);
             }
             finally
             {
-                Logger.Verbose(request.CorrelationId, "Request processed.");
+                _logger.Information(request.CorrelationId, $"{action.Method.Name} => Finished");
             }
+
+            var convertedResponse = _converter(response);
+
+            return convertedResponse;
         }
 
         #endregion
