@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Http;
-using LazyLayer.Core.Contracts;
 using LazyLayer.Core.Providers;
+using LazyLayer.Core.Requests;
 using LazyLayer.Core.Services;
 
 namespace LazyLayer.Http

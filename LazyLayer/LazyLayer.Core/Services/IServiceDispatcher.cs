@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using LazyLayer.Core.Contracts;
+using LazyLayer.Core.Requests;
 
 namespace LazyLayer.Core.Services
 {
@@ -30,7 +30,7 @@ namespace LazyLayer.Core.Services
         /// <summary>
         /// Executes specified method and returns converted response that calling layer understands.
         /// </summary>
-        /// <typeparam name="TResult">Type of <see cref="Contracts.BaseResponse"/>.</typeparam>
+        /// <typeparam name="TResult">Type of <see cref="Responses.ServiceResponse"/>.</typeparam>
         /// <param name="request"></param>
         /// <param name="action">Method from service layer that will be executed.</param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace LazyLayer.Core.Services
         /// Executes specified method and returns converted response that calling layer understands.
         /// </summary>
         /// <typeparam name="TContent">Content type.</typeparam>
-        /// <typeparam name="TResult">Type of <see cref="Contracts.BaseResponse"/>.</typeparam>
+        /// <typeparam name="TResult">Type of <see cref="Responses.ServiceResponse"/>.</typeparam>
         /// <param name="request"></param>
         /// <param name="action">Method from service layer that will be executed.</param>
         /// <returns>Instance of <see cref="TResponse"/>.</returns>

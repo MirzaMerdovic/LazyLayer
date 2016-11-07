@@ -1,4 +1,4 @@
-﻿namespace LazyLayer.Core.Contracts
+﻿namespace LazyLayer.Core.Responses
 {
     /// <summary>
     /// Represents possible result of service executions.

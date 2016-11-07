@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LazyLayer.Core.Contracts
+namespace LazyLayer.Core.Requests
 {
     /// <summary>
     /// Represents a plain service method request.

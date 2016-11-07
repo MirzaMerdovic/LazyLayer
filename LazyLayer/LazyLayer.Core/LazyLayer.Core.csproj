@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\BaseContentResponse.cs" />
-    <Compile Include="Contracts\BaseResponse.cs" />
-    <Compile Include="Contracts\FailedResponse.cs" />
-    <Compile Include="Contracts\IResponseStatus.cs" />
-    <Compile Include="Contracts\NotFoundResponse.cs" />
-    <Compile Include="Contracts\OkResponse.cs" />
-    <Compile Include="Contracts\OkResponseOfT.cs" />
-    <Compile Include="Contracts\ResponseStatus.cs" />
-    <Compile Include="Contracts\ServiceRequest.cs" />
-    <Compile Include="Contracts\ServiceRequestOfT.cs" />
+    <Compile Include="Responses\ServiceResponseOfT.cs" />
+    <Compile Include="Responses\ServiceResponse.cs" />
+    <Compile Include="Responses\FailedResponse.cs" />
+    <Compile Include="Responses\IServiceResponseStatus.cs" />
+    <Compile Include="Responses\NotFoundResponse.cs" />
+    <Compile Include="Responses\OkResponse.cs" />
+    <Compile Include="Responses\OkResponseOfT.cs" />
+    <Compile Include="Responses\ResponseStatus.cs" />
+    <Compile Include="Requests\ServiceRequest.cs" />
+    <Compile Include="Requests\ServiceRequestOfT.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ILogProvider.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="Services\ServiceDispatcher.cs" />
     <Compile Include="Services\ServiceDispatcherFactory.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

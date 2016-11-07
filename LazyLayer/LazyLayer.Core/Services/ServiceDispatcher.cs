@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using LazyLayer.Core.Contracts;
 using LazyLayer.Core.Providers;
+using LazyLayer.Core.Requests;
+using LazyLayer.Core.Responses;
 
 namespace LazyLayer.Core.Services
 {
@@ -14,7 +15,7 @@ namespace LazyLayer.Core.Services
     {
         #region Fields
 
-        private readonly Func<BaseResponse, TResponse> _converter;
+        private readonly Func<ServiceResponse, TResponse> _converter;
 
         private readonly ILogProvider _logger;
 
@@ -26,9 +27,9 @@ namespace LazyLayer.Core.Services
         /// Initializes new instance of <see cref="ServiceDispatcher{TResponse}"/>
         /// </summary>
         /// <param name="converter">
-        /// Delegate that implements logic for conversion of <see cref="BaseResponse"/> to <see cref="TResponse"/>.
+        /// Delegate that implements logic for conversion of <see cref="ServiceResponse"/> to <see cref="TResponse"/>.
         /// </param>
-        public ServiceDispatcher(Func<BaseResponse, TResponse> converter) : this(converter, null)
+        public ServiceDispatcher(Func<ServiceResponse, TResponse> converter) : this(converter, null)
         {
         }
 
@@ -36,11 +37,11 @@ namespace LazyLayer.Core.Services
         /// Initializes new instance of <see cref="ServiceDispatcher{TResponse}"/>
         /// </summary>
         /// <param name="converter">
-        /// Delegate that implements logic for conversion of <see cref="BaseResponse"/> to <see cref="TResponse"/>.</param>
+        /// Delegate that implements logic for conversion of <see cref="ServiceResponse"/> to <see cref="TResponse"/>.</param>
         /// <param name="logger">Implementation of <see cref="ILogProvider"/> interface.
         /// <remarks>If value is null <see cref="NullLogProvider"/> will be used, which does nothing.</remarks>
         /// </param>
-        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger)
+        public ServiceDispatcher(Func<ServiceResponse, TResponse> converter, ILogProvider logger)
         {
             _converter = converter;
 
@@ -61,7 +62,7 @@ namespace LazyLayer.Core.Services
             Guard.ThrowIfNull(request, nameof(request));
             Guard.ThrowIfNull(action, nameof(action));
 
-            BaseResponse response;
+            ServiceResponse response;
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
 
             var timer = new Stopwatch();
@@ -99,7 +100,7 @@ namespace LazyLayer.Core.Services
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
 
-            BaseResponse response;
+            ServiceResponse response;
             var timer = new Stopwatch();
 
             try
@@ -135,7 +136,7 @@ namespace LazyLayer.Core.Services
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
 
-            BaseResponse response;
+            ServiceResponse response;
             var timer = new Stopwatch();
 
             try
@@ -170,7 +171,7 @@ namespace LazyLayer.Core.Services
             Guard.ThrowIfNull(action, nameof(action));
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
-            BaseResponse response;
+            ServiceResponse response;
             var timer = new Stopwatch();
 
             try

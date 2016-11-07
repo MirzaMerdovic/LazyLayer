@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace LazyLayer.Core.Contracts
+namespace LazyLayer.Core.Responses
 {
     /// <summary>
     /// Represents response that tells that resource could not be found..
     /// </summary>
-    public class NotFoundResponse : BaseResponse
+    public class NotFoundResponse : ServiceResponse
     {
         /// <summary>
         /// Resource's unique identifier.
@@ -13,14 +13,14 @@ namespace LazyLayer.Core.Contracts
         public int Id { get; private set; }
 
         /// <summary>
-        /// <see cref="IResponseStatus.Status"/>.
+        /// <see cref="IServiceResponseStatus.Status"/>.
         /// </summary>
         public override ResponseStatus Status { get; }
 
         /// <summary>
         /// Initializes new instance of <see cref="NotFoundResponse"/>.
         /// </summary>
-        /// <param name="correlationId"><see cref="BaseResponse.CorrelationId"/>.</param>
+        /// <param name="correlationId"><see cref="ServiceResponse.CorrelationId"/>.</param>
         /// <param name="id"><see cref="Id"/>.</param>
         public NotFoundResponse(Guid correlationId, int id) : base(correlationId)
         {

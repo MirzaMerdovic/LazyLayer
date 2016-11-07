@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace LazyLayer.Core.Contracts
+namespace LazyLayer.Core.Responses
 {
     /// <summary>
     /// Represents service execution failure.
     /// </summary>
-    public class FailedResponse : BaseResponse
+    public class FailedResponse : ServiceResponse
     {
         /// <summary>
         /// <see cref="Exception"/> that has been thrown.
@@ -15,7 +15,7 @@ namespace LazyLayer.Core.Contracts
         /// <summary>
         /// Initializes new instance of <see cref="FailedResponse"/>.
         /// </summary>
-        /// <param name="correlationId"><see cref="BaseResponse.CorrelationId"/>.</param>
+        /// <param name="correlationId"><see cref="ServiceResponse.CorrelationId"/>.</param>
         /// <param name="exception"><see cref="Exception"/>.</param>
         /// <param name="methodName">Method that caused the failure.</param>
         public FailedResponse(Guid correlationId, Exception exception, string methodName) : base(correlationId)
@@ -38,7 +38,7 @@ namespace LazyLayer.Core.Contracts
         }
 
         /// <summary>
-        /// <see cref="IResponseStatus.Status"/>.
+        /// <see cref="IServiceResponseStatus.Status"/>.
         /// </summary>
         public override ResponseStatus Status { get; }
 

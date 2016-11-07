@@ -25,7 +25,7 @@ namespace LazyLayer.Http
         /// <summary>
         /// <see cref="Guid"/> value that represents correlation identifier that can be used for tracking purposes.
         /// </summary>
-        /// <remarks>This property should have the same value as <see cref="Core.Contracts.ServiceRequest.CorrelationId"/>.</remarks>
+        /// <remarks>This property should have the same value as <see cref="Core.Requests.ServiceRequest.CorrelationId"/>.</remarks>
         public Guid ErrorId { get; set; }
 
         public static ErrorInfo Create(string message, string requestUrl, Guid errorId)

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Web.Http;
 using System.Web.Http.Results;
-using LazyLayer.Core.Contracts;
 using LazyLayer.Core.Providers;
+using LazyLayer.Core.Responses;
 using Newtonsoft.Json;
 
 namespace LazyLayer.Http
@@ -22,7 +21,7 @@ namespace LazyLayer.Http
         /// </summary>
         /// <param name="result">Instance of <see cref="IHttpActionResult"/>.</param>
         /// <returns></returns>
-        public IHttpActionResult ConvertResponse(IResponseStatus result)
+        public IHttpActionResult ConvertResponse(IServiceResponseStatus result)
         {
             switch (result.Status)
             {

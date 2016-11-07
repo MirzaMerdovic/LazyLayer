@@ -1,4 +1,4 @@
-﻿namespace LazyLayer.Core.Contracts
+﻿namespace LazyLayer.Core.Requests
 {
     /// <summary>
     /// Represents a service method request that contains content.
