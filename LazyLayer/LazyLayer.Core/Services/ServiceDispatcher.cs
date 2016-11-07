@@ -11,9 +11,7 @@ namespace LazyLayer.Core.Services
     /// <typeparam name="TResponse"></typeparam>
     public class ServiceDispatcher<TResponse> : IServiceDispatcher<TResponse>
     {
-        public delegate TResponse ConvertResponse(BaseResponse converter);
-
-        private readonly ConvertResponse _converter;
+        private readonly Func<BaseResponse, TResponse> _converter;
         private readonly IServiceExecutor _executor;
 
         #region Constructors
@@ -24,16 +22,16 @@ namespace LazyLayer.Core.Services
         /// <param name="converter">
         /// Delegate that implements logic for conversion of <see cref="BaseResponse"/> to <see cref="TResponse"/>.
         /// </param>
-        public ServiceDispatcher(ConvertResponse converter) : this(converter, null)
+        public ServiceDispatcher(Func<BaseResponse, TResponse> converter) : this(converter, null)
         {
         }
 
 
-        public ServiceDispatcher(ConvertResponse converter, ILogProvider logger) : this(converter, logger, null)
+        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger) : this(converter, logger, null)
         {
         }
 
-        public ServiceDispatcher(ConvertResponse converter, ILogProvider logger, IValidationProvider validator)
+        public ServiceDispatcher(Func<BaseResponse, TResponse> converter, ILogProvider logger, IValidationProvider validator)
         {
             _converter = converter;
 
