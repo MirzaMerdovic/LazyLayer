@@ -22,11 +22,6 @@
         Found,
 
         /// <summary>
-        /// Property validation has failed, check validation errors for more details.
-        /// </summary>
-        ValidationError,
-
-        /// <summary>
         /// Entity not found in database.
         /// </summary>
         NotFound,

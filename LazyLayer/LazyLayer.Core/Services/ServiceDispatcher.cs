@@ -12,9 +12,13 @@ namespace LazyLayer.Core.Services
     /// <typeparam name="TResponse"></typeparam>
     public class ServiceDispatcher<TResponse> : IServiceDispatcher<TResponse>
     {
+        #region Fields
+
         private readonly Func<BaseResponse, TResponse> _converter;
 
         private readonly ILogProvider _logger;
+
+        #endregion
 
         #region Constructors
 
@@ -160,9 +164,6 @@ namespace LazyLayer.Core.Services
             return convertedResponse;
         }
 
-        /// <summary>
-        /// <see cref="IServiceDispatcher{TResponse}.ExecuteAsync{T, TResult}"/>
-        /// </summary>
         public async Task<TResponse> ExecuteAsync<T, TResult>(ServiceRequest<T> request, Func<T, Task<TResult>> action)
         {
             Guard.ThrowIfNull(request, nameof(request));

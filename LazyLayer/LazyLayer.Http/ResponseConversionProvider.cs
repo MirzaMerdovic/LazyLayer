@@ -34,9 +34,6 @@ namespace LazyLayer.Http
 
                     return new JsonResult<object>(content, new JsonSerializerSettings(), Encoding.UTF8, _controller);
 
-                case ResponseStatus.ValidationError:
-                    return new ValidationFailedResult(((ValidationFailedResponse)result).Errors);
-
                 case ResponseStatus.NotFound:
                     return new NotFoundResult(_controller);
 

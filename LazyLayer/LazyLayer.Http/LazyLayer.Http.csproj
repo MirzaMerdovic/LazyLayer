@@ -62,7 +62,6 @@
     <Compile Include="LazyController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseConversionProvider.cs" />
-    <Compile Include="ValidationFailedResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
