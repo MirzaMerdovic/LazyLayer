@@ -6,7 +6,7 @@ namespace LazyLayer.Core.Responses
     /// Represents successful service response that returns a content.
     /// </summary>
     /// <typeparam name="T">Content type.</typeparam>
-    public class OkResponse<T> : ServiceResponseOfT<T>
+    public class OkResponse<T> : ServiceResponse<T>
     {
         /// <summary>
         /// <see cref="IServiceResponseStatus.Status"/>

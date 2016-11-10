@@ -6,7 +6,7 @@ namespace LazyLayer.Core.Responses
     /// Represent base service result that needs to be implemented when creating service result that returns content.
     /// </summary>
     /// <typeparam name="T">Content type.</typeparam>
-    public abstract class ServiceResponseOfT<T> : ServiceResponse
+    public abstract class ServiceResponse<T> : ServiceResponse
     {
         /// <summary>
         /// Response content. Usually a query result.
@@ -14,11 +14,11 @@ namespace LazyLayer.Core.Responses
         public T Content { get; }
 
         /// <summary>
-        /// Initializes new instance of <see cref="ServiceResponseOfT{T}"/>.
+        /// Initializes new instance of <see cref="ServiceResponse{T}"/>.
         /// </summary>
         /// <param name="correlationId"></param>
         /// <param name="content"></param>
-        protected ServiceResponseOfT(Guid correlationId, T content) : base(correlationId)
+        protected ServiceResponse(Guid correlationId, T content) : base(correlationId)
         {
             Content = content;
         }
