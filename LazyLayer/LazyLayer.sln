@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Serilog.Test", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Example.Core", "LazyLayer.Example.Core\LazyLayer.Example.Core.csproj", "{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyLayer.Example.WebApi", "LazyLayer.Example.WebApi\LazyLayer.Example.WebApi.csproj", "{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +57,6 @@ Global
 		{6E0D7CBF-6DAE-4FB2-9F17-9400383DB91E} = {2E42F187-5256-43AE-8EF5-885F8D0A7231}
 		{33729B0E-B57F-4BFF-8A9F-6D15AAF44DC8} = {2E42F187-5256-43AE-8EF5-885F8D0A7231}
 		{CA50D0D9-D408-4DF5-9595-E9A2D4F9D667} = {19C57FC8-31CD-4E66-84CA-CCF489A1C947}
+		{85DF1965-4CA7-4CBE-AA29-ECC2D959E2FD} = {19C57FC8-31CD-4E66-84CA-CCF489A1C947}
 	EndGlobalSection
 EndGlobal
