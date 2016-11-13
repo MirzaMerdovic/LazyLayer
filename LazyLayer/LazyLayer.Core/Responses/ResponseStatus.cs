@@ -7,7 +7,7 @@
     {
         /// <summary>
         /// Unknown result means that call hasn't finished executing and erroneous behavior hasn't been handled properly,
-        ///  because of some unpredicted scenario.
+        /// because of some unpredicted scenario.
         /// </summary>
         Unknown,
 
