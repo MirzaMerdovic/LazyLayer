@@ -16,18 +16,29 @@ namespace LazyLayer.Http
         /// <summary>
         /// Initializes new instance of <see cref="LazyController"/>.
         /// </summary>
-        protected LazyController()
+        protected LazyController() : this(null, null)
         {
-            Dispatcher = ServiceDispatcherFactory<IHttpActionResult>.Create(new ResponseConversionProvider(this));
         }
 
         /// <summary>
         /// Initializes new instance of <see cref="LazyController"/>.
         /// </summary>
         /// <param name="convertor">Instance of <see cref="IResponseConversionProvider{TConvertedResponse}"/>.</param>
-        protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor)
+        protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor) : this(convertor, null)
         {
-            Dispatcher = ServiceDispatcherFactory<IHttpActionResult>.Create(convertor);
+        }
+
+        /// <summary>
+        /// Initializes new instance of <see cref="LazyController"/>.
+        /// </summary>
+        /// <param name="convertor">Instance of <see cref="IResponseConversionProvider{TConvertedResponse}"/>.</param>
+        /// <param name="logger"></param>
+        protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor, ILogProvider logger)
+        {
+            Dispatcher =
+                ServiceDispatcherFactory<IHttpActionResult>.Create(
+                    convertor ?? new ResponseConversionProvider(this),
+                    logger ?? new NullLogProvider());
         }
 
         #endregion
