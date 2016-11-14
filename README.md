@@ -10,3 +10,5 @@ What LazyLayer offers:
  3. Basic performance measuring - it collects execution times of every request it processes.
  You can find an example for WebAPI under LazyLayer.Example.WebApi.
  4. LazyLayer.Http - provides setup for WebAPI all that is required is to inherit LazyController.
+
+More info: https://github.com/MirzaMerdovic/LazyLayer/wiki
