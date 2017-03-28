@@ -2,6 +2,12 @@
 <html>
 	<body>
 		<h1>Lazy Layer</h1>
-		<p>I'm hosted with GitHub Pages.</p>
+		<p>LazyLayer is an idea of generic and reusable wrapper around Web API that would provide easier and faster
+		implementation of service and data access layer.</p>
+		<p>Philosophy behind it is that consumer of the layer should provide only 2 things:</p>
+		<ol>
+			<li>Method that does a conversion of LazyLayer responses into some other specific response like IHttpActionResult of WebAPI.</li>
+			<li>Method that needs to be invoked, e.g.GetUser.</li>
+		</ol>
 	</body>
 </html>
