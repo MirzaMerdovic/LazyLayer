@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LazyLayer.Http</id>
+    <version>1.1.0</version>
+    <title>LazyLayer Http</title>
+    <authors>Mirza Merdovic</authors>
+    <owners>Mirza Merdovic</owners>
+    <projectUrl>https://github.com/MirzaMerdovic/LazyLayer/wiki</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>LazyLayer extension for ASP.NET Web API</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>HTTP Web API ASP</tags>
+  </metadata>
+</package>

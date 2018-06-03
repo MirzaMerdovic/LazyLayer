@@ -9,7 +9,7 @@ namespace LazyLayer.Http
 {
     public class LazyController : ApiController
     {
-        protected readonly IServiceDispatcher<IHttpActionResult> Dispatcher;
+        private readonly IServiceDispatcher<IHttpActionResult> _dispatcher;
 
         #region Constructors
 
@@ -35,7 +35,7 @@ namespace LazyLayer.Http
         /// <param name="logger"></param>
         protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor, ILogProvider logger)
         {
-            Dispatcher =
+            _dispatcher =
                 ServiceDispatcherFactory<IHttpActionResult>.Create(
                     convertor ?? new ResponseConversionProvider(this),
                     logger ?? new NullLogProvider());
@@ -47,23 +47,23 @@ namespace LazyLayer.Http
 
         protected Task<IHttpActionResult> ExecuteAsync(Func<Task> method)
         {
-            return Dispatcher.ExecuteAsync(new ServiceRequest(), method);
+            return _dispatcher.ExecuteAsync(new ServiceRequest(), method);
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent>(TContent content, Func<TContent, Task> method)
         {
-            return Dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
+            return _dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
         }
 
 
         protected Task<IHttpActionResult> ExecuteAsync<TResult>(Func<Task<TResult>> method)
         {
-            return Dispatcher.ExecuteAsync(new ServiceRequest(), method);
+            return _dispatcher.ExecuteAsync(new ServiceRequest(), method);
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent, TResult>(TContent content, Func<TContent, Task<TResult>> method)
         {
-            return Dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
+            return _dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
         }
 
         #endregion
