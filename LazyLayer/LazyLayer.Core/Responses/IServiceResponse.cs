@@ -5,7 +5,7 @@ namespace LazyLayer.Core.Responses
     /// <summary>
     /// Interface that every service execution result needs to inherit.
     /// </summary>
-    public interface IServiceResponseStatus
+    public interface IServiceResponse
     {
         /// <summary>
         /// Indicator that tells the status of the result, for example in <see cref="FailedResponse"/> it will be Failure.

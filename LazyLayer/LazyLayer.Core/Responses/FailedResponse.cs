@@ -38,7 +38,7 @@ namespace LazyLayer.Core.Responses
         }
 
         /// <summary>
-        /// <see cref="IServiceResponseStatus.Status"/>.
+        /// <see cref="IServiceResponse.Status"/>.
         /// </summary>
         public override ResponseStatus Status { get; }
 

@@ -16,12 +16,6 @@ namespace LazyLayer.Example.WebApi.App_Start
             configuration.MapHttpAttributeRoutes();
 
             configuration.Routes.MapHttpRoute(
-                name: "Index",
-                routeTemplate: "",
-                defaults: new { controller = "Home", action = "Index" }
-                );
-
-            configuration.Routes.MapHttpRoute(
                 name: "NotFound",
                 routeTemplate: "{*path}",
                 defaults: new { controller = "Error", action = "NotFound" });

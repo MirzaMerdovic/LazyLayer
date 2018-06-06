@@ -1,8 +1,8 @@
-﻿using System.Configuration;
-using System.Web.Http;
+﻿using LazyLayer.Example.WebApi.App_Start;
 using Microsoft.Owin;
 using Owin;
-using LazyLayer.Example.WebApi.App_Start;
+using System.Configuration;
+using System.Web.Http;
 
 [assembly: OwinStartup(typeof(LazyLayer.Example.WebApi.Startup))]
 

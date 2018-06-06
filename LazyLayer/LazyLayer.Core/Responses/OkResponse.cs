@@ -8,7 +8,7 @@ namespace LazyLayer.Core.Responses
     public class OkResponse : ServiceResponse
     {
         /// <summary>
-        /// <see cref="IServiceResponseStatus.Status"/>.
+        /// <see cref="IServiceResponse.Status"/>.
         /// </summary>
         public override ResponseStatus Status { get; }
 

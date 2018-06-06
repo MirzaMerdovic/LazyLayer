@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LazyLayer.Serilog</RootNamespace>
     <AssemblyName>LazyLayer.Serilog</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -36,24 +36,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Serilog.2.7.1\lib\net46\Serilog.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.File.3.1.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Serilog.Sinks.File.4.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
     </Reference>
-    <Reference Include="Serilog.Sinks.MSSqlServer, Version=4.1.1.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.MSSqlServer.4.1.1\lib\net45\Serilog.Sinks.MSSqlServer.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Serilog.Sinks.MSSqlServer, Version=5.1.2.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.MSSqlServer.5.1.2\lib\net452\Serilog.Sinks.MSSqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Sinks.PeriodicBatching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.0.1\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Serilog.Sinks.PeriodicBatching.2.1.1\lib\net45\Serilog.Sinks.PeriodicBatching.dll</HintPath>
     </Reference>
     <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.1.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

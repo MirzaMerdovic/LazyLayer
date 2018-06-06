@@ -17,6 +17,10 @@
         Success,
 
         /// <summary>
+        /// New resource created successfully.
+        /// </summary>
+        Created,
+        /// <summary>
         /// One or many results found.
         /// </summary>
         Found,

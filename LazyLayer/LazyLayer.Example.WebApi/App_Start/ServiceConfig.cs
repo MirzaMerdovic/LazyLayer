@@ -15,7 +15,6 @@ namespace LazyLayer.Example.WebApi.App_Start
         public static void Configure(HttpConfiguration configuration)
         {
             configuration.Services.Replace(typeof(IExceptionHandler), new ApiExceptionHandler());
-            configuration.Services.Add(typeof(IExceptionLogger), new ApiExceptionLogger());
         }
     }
 }

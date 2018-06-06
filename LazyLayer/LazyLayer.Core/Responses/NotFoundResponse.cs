@@ -13,7 +13,7 @@ namespace LazyLayer.Core.Responses
         public int Id { get; private set; }
 
         /// <summary>
-        /// <see cref="IServiceResponseStatus.Status"/>.
+        /// <see cref="IServiceResponse.Status"/>.
         /// </summary>
         public override ResponseStatus Status { get; }
 
