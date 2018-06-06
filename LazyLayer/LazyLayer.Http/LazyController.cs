@@ -1,15 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Http;
-using LazyLayer.Core.Providers;
+﻿using LazyLayer.Core.Providers;
 using LazyLayer.Core.Requests;
 using LazyLayer.Core.Services;
+using System;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace LazyLayer.Http
 {
     public class LazyController : ApiController
     {
-        private readonly IServiceDispatcher<IHttpActionResult> _dispatcher;
+        protected readonly IServiceDispatcher<IHttpActionResult> Dispatcher;
 
         #region Constructors
 
@@ -35,7 +35,7 @@ namespace LazyLayer.Http
         /// <param name="logger"></param>
         protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor, ILogProvider logger)
         {
-            _dispatcher =
+            Dispatcher =
                 ServiceDispatcherFactory<IHttpActionResult>.Create(
                     convertor ?? new ResponseConversionProvider(this),
                     logger ?? new NullLogProvider());
@@ -47,25 +47,73 @@ namespace LazyLayer.Http
 
         protected Task<IHttpActionResult> ExecuteAsync(Func<Task> method)
         {
-            return _dispatcher.ExecuteAsync(new ServiceRequest(), method);
+            return
+                Dispatcher.ExecuteAsync(
+                    new ServiceRequest
+                    {
+                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
+                        UserName = User.Identity.Name
+                    },
+                    method);
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent>(TContent content, Func<TContent, Task> method)
         {
-            return _dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
+            return
+                Dispatcher.ExecuteAsync(
+                    new ServiceRequest<TContent>(content)
+                    {
+                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
+                        UserName = User.Identity.Name
+                    },
+                    method);
         }
 
 
         protected Task<IHttpActionResult> ExecuteAsync<TResult>(Func<Task<TResult>> method)
         {
-            return _dispatcher.ExecuteAsync(new ServiceRequest(), method);
+            return
+                Dispatcher.ExecuteAsync(
+                    new ServiceRequest
+                    {
+                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
+                        UserName = User.Identity.Name
+                    },
+                    method);
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent, TResult>(TContent content, Func<TContent, Task<TResult>> method)
         {
-            return _dispatcher.ExecuteAsync(new ServiceRequest<TContent>(content), method);
+            return
+                Dispatcher.ExecuteAsync(
+                    new ServiceRequest<TContent>(content)
+                    {
+                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
+                        UserName = User.Identity.Name
+                    },
+                    method);
         }
 
         #endregion
+
+        private static HttpMethod GetHttpMethod(string method)
+        {
+            if (method == "POST")
+                return HttpMethod.POST;
+
+            if (method == "PUT")
+                return HttpMethod.PUT;
+
+            if (method == "PATCH")
+                return HttpMethod.PATCH;
+
+            if (method == "GET")
+                return HttpMethod.GET;
+
+            if (method == "DELETE")
+                return HttpMethod.DELETE;
+
+            return HttpMethod.CUSTOM;
+        }
     }
 }

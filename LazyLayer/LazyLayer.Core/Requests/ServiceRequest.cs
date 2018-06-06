@@ -18,6 +18,11 @@ namespace LazyLayer.Core.Requests
         public DateTime TimeStamp => DateTime.UtcNow;
 
         /// <summary>
+        /// Gets or sets HTTP Method from received request.
+        /// </summary>
+        public HttpMethod HttpMethod { get; set; }
+
+        /// <summary>
         /// Gets or sets creator of request.
         /// </summary>
         public string UserName { get; set; }

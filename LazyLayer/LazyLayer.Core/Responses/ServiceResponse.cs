@@ -5,7 +5,7 @@ namespace LazyLayer.Core.Responses
     /// <summary>
     /// Represent base service result that contain basic properties needed for other concrete service result implementations.
     /// </summary>
-    public abstract class ServiceResponse : IServiceResponseStatus
+    public abstract class ServiceResponse : IServiceResponse
     {
         /// <summary>
         /// Represents date and time of response creation.
@@ -18,12 +18,12 @@ namespace LazyLayer.Core.Responses
         public Guid CorrelationId { get; }
 
         /// <summary>
-        /// <see cref="IServiceResponseStatus.Status"/>.
+        /// <see cref="IServiceResponse.Status"/>.
         /// </summary>
         public abstract ResponseStatus Status { get; }
 
         /// <summary>
-        /// <see cref="IServiceResponseStatus.Message"/>.
+        /// <see cref="IServiceResponse.Message"/>.
         /// </summary>
         public string Message { get; set; }
 

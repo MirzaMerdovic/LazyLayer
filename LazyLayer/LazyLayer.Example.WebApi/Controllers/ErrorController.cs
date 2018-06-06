@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using LazyLayer.Example.WebApi.Models;
 
 namespace LazyLayer.Example.WebApi.Controllers
 {
@@ -17,11 +16,11 @@ namespace LazyLayer.Example.WebApi.Controllers
         /// Intercepts rout not found error in order to show it as friendly message on the screen.
         /// </summary>
         /// <param name="path">Path.</param>
-        /// <returns>404 with <see cref="ErrorInfoModel"/> object as content.</returns>
+        /// <returns>404 with route information as content.</returns>
         [HttpGet, HttpPost, HttpPut, HttpPatch, HttpDelete, HttpHead, HttpOptions]
         public HttpResponseMessage NotFound(string path)
         {
-            var metadata = new ErrorInfoModel
+            var metadata = new
             {
                 Message = "Route doesn't exist.",
                 TimeStamp = DateTime.UtcNow,

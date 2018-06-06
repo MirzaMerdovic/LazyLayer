@@ -43,13 +43,7 @@ namespace LazyLayer.Core.Services
         /// </param>
         public ServiceDispatcher(Func<ServiceResponse, TResponse> converter, ILogProvider logger)
         {
-            _converter = converter;
-
-            if (_converter == null)
-            {
-                Guard.ThrowIfNull(_converter, nameof(_converter));
-            }
-
+            _converter = converter ?? throw new ArgumentNullException(nameof(converter));
             _logger = logger ?? new NullLogProvider();
         }
 
@@ -59,8 +53,8 @@ namespace LazyLayer.Core.Services
 
         public async Task<TResponse> ExecuteAsync(ServiceRequest request, Func<Task> action)
         {
-            Guard.ThrowIfNull(request, nameof(request));
-            Guard.ThrowIfNull(action, nameof(action));
+            request = request ?? throw new ArgumentNullException(nameof(request));
+            action = action ?? throw new ArgumentNullException(nameof(action));
 
             ServiceResponse response;
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
@@ -95,8 +89,8 @@ namespace LazyLayer.Core.Services
 
         public async Task<TResponse> ExecuteAsync<TContent>(ServiceRequest<TContent> request, Func<TContent, Task> action)
         {
-            Guard.ThrowIfNull(request, nameof(request));
-            Guard.ThrowIfNull(action, nameof(action));
+            request = request ?? throw new ArgumentNullException(nameof(request));
+            action = action ?? throw new ArgumentNullException(nameof(action));
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
 
@@ -131,8 +125,8 @@ namespace LazyLayer.Core.Services
 
         public async Task<TResponse> ExecuteAsync<TResult>(ServiceRequest request, Func<Task<TResult>> action)
         {
-            Guard.ThrowIfNull(request, nameof(request));
-            Guard.ThrowIfNull(action, nameof(action));
+            request = request ?? throw new ArgumentNullException(nameof(request));
+            action = action ?? throw new ArgumentNullException(nameof(action));
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
 
@@ -147,7 +141,10 @@ namespace LazyLayer.Core.Services
 
                 _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}");
 
-                response = new OkResponse<TResult>(request.CorrelationId, result);
+                if (request.HttpMethod == HttpMethod.POST)
+                    response = new CreatedResponse<TResult>(request.CorrelationId, result);
+                else
+                    response = new OkResponse<TResult>(request.CorrelationId, result);
             }
             catch (Exception ex)
             {
@@ -167,8 +164,8 @@ namespace LazyLayer.Core.Services
 
         public async Task<TResponse> ExecuteAsync<T, TResult>(ServiceRequest<T> request, Func<T, Task<TResult>> action)
         {
-            Guard.ThrowIfNull(request, nameof(request));
-            Guard.ThrowIfNull(action, nameof(action));
+            request = request ?? throw new ArgumentNullException(nameof(request));
+            action = action ?? throw new ArgumentNullException(nameof(action));
 
             _logger.Information(request.CorrelationId, $"{action.Method.Name} => Started");
             ServiceResponse response;
@@ -182,7 +179,12 @@ namespace LazyLayer.Core.Services
 
                 _logger.Verbose(request.CorrelationId, $"{action.Method.Name} => Execution time: {timer.ElapsedMilliseconds}");
 
-                response = new OkResponse<TResult>(request.CorrelationId, result);
+                if (request.HttpMethod == HttpMethod.POST)
+                    response = new CreatedResponse<TResult>(request.CorrelationId, result);
+                else if (result == null && request.HttpMethod == HttpMethod.GET)
+                    response = new NotFoundResponse(request.CorrelationId, Convert.ToInt32(request.Content));
+                else
+                    response = new OkResponse<TResult>(request.CorrelationId, result);
             }
             catch (Exception ex)
             {
