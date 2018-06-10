@@ -63,8 +63,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LazyLayer.Core\LazyLayer.Core.csproj">
-      <Project>{34095554-6C28-49B2-8F39-E8AE7494F9F2}</Project>
+    <ProjectReference Include="..\LazyLayer.CoreDynamic\LazyLayer.Core.csproj">
+      <Project>{b6fad25a-a566-49cd-86d0-2e68e0f0fd21}</Project>
       <Name>LazyLayer.Core</Name>
     </ProjectReference>
   </ItemGroup>
