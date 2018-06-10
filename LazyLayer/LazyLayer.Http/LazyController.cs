@@ -1,7 +1,10 @@
 ﻿using LazyLayer.Core.Providers;
 using LazyLayer.Core.Requests;
 using LazyLayer.Core.Services;
+using LazyLayer.Core.Services.Dispatchers;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -9,7 +12,8 @@ namespace LazyLayer.Http
 {
     public class LazyController : ApiController
     {
-        protected readonly IServiceDispatcher<IHttpActionResult> Dispatcher;
+        private readonly IServiceDispatcher<IHttpActionResult> _dispatcher;
+        private readonly string _userName;
 
         #region Constructors
 
@@ -35,10 +39,18 @@ namespace LazyLayer.Http
         /// <param name="logger"></param>
         protected LazyController(IResponseConversionProvider<IHttpActionResult> convertor, ILogProvider logger)
         {
-            Dispatcher =
-                ServiceDispatcherFactory<IHttpActionResult>.Create(
-                    convertor ?? new ResponseConversionProvider(this),
-                    logger ?? new NullLogProvider());
+            _dispatcher =
+                ServiceDispatcherFactory<IHttpActionResult>
+                    .Create(
+                        convertor ?? new ResponseConversionProvider(this),
+                        logger ?? new NullLogProvider());
+
+            _userName = User?.Identity?.Name ?? "Unknown";
+        }
+
+        private bool AddSqlException(SqlException sex)
+        {
+            return false;
         }
 
         #endregion
@@ -48,72 +60,48 @@ namespace LazyLayer.Http
         protected Task<IHttpActionResult> ExecuteAsync(Func<Task> method)
         {
             return
-                Dispatcher.ExecuteAsync(
+                _dispatcher.Execute(
                     new ServiceRequest
                     {
-                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
-                        UserName = User.Identity.Name
+                        UserName = _userName
                     },
-                    method);
+                    new FuncTaskExecutor(method));
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent>(TContent content, Func<TContent, Task> method)
         {
             return
-                Dispatcher.ExecuteAsync(
+                _dispatcher.Execute(
                     new ServiceRequest<TContent>(content)
                     {
-                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
-                        UserName = User.Identity.Name
+                        UserName = _userName
                     },
-                    method);
+                    new FuncOfTTaskExecutor<TContent>(content, method));
         }
 
 
         protected Task<IHttpActionResult> ExecuteAsync<TResult>(Func<Task<TResult>> method)
         {
             return
-                Dispatcher.ExecuteAsync(
+                _dispatcher.Execute(
                     new ServiceRequest
                     {
-                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
-                        UserName = User.Identity.Name
+                        UserName = _userName
                     },
-                    method);
+                    new FuncTaskOfTExecutor<TResult>(method));
         }
 
         protected Task<IHttpActionResult> ExecuteAsync<TContent, TResult>(TContent content, Func<TContent, Task<TResult>> method)
         {
             return
-                Dispatcher.ExecuteAsync(
+                _dispatcher.Execute(
                     new ServiceRequest<TContent>(content)
                     {
-                        HttpMethod = GetHttpMethod(ControllerContext.Request.Method.Method),
-                        UserName = User.Identity.Name
+                        UserName = _userName
                     },
-                    method);
+                    new FuncOfTTaskOfTExecutor<TContent, TResult>(content, method));
         }
 
         #endregion
-
-        private static HttpMethod GetHttpMethod(string method)
-        {
-            if (method == "POST")
-                return HttpMethod.POST;
-
-            if (method == "PUT")
-                return HttpMethod.PUT;
-
-            if (method == "PATCH")
-                return HttpMethod.PATCH;
-
-            if (method == "GET")
-                return HttpMethod.GET;
-
-            if (method == "DELETE")
-                return HttpMethod.DELETE;
-
-            return HttpMethod.CUSTOM;
-        }
     }
 }

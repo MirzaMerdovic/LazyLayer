@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LazyLayer.CoreDynamic")]
+[assembly: AssemblyTitle("BenchmarkTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LazyLayer.CoreDynamic")]
+[assembly: AssemblyProduct("BenchmarkTest")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b6fad25a-a566-49cd-86d0-2e68e0f0fd21")]
+[assembly: Guid("65ce28e6-bfba-4ded-99dd-3ed7b3e26067")]
 
 // Version information for an assembly consists of the following four values:
 //

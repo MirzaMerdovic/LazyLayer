@@ -14,10 +14,12 @@ namespace LazyLayer.Examples.WebApi.Test
 {
     public class ValueControllerTests
     {
+        private const string Url = "http://localhost";
+
         [Fact]
         public async Task PostTest()
         {
-            var controller = CreateController(HttpMethod.Post, "http://localhost");
+            var controller = CreateController(HttpMethod.Post, Url);
 
             var response = await controller.Post(new Value());
             Assert.IsAssignableFrom<CreatedAtRouteNegotiatedContentResult<int>>(response);
@@ -26,7 +28,7 @@ namespace LazyLayer.Examples.WebApi.Test
         [Fact]
         public async Task GetAllTest()
         {
-            var controller = CreateController(HttpMethod.Get, "http://localhost");
+            var controller = CreateController(HttpMethod.Get, Url);
 
             var response = await controller.Get();
             Assert.IsAssignableFrom<JsonResult<object>>(response);
@@ -38,7 +40,7 @@ namespace LazyLayer.Examples.WebApi.Test
         [Fact]
         public async Task GetTest()
         {
-            var controller = CreateController(HttpMethod.Get, "http://localhost");
+            var controller = CreateController(HttpMethod.Get, Url);
 
             var response = await controller.Get(2);
             Assert.IsAssignableFrom<JsonResult<object>>(response);
@@ -50,7 +52,7 @@ namespace LazyLayer.Examples.WebApi.Test
         [Fact]
         public async Task NotFoundTest()
         {
-            var controller = CreateController(HttpMethod.Get, "http://localhost");
+            var controller = CreateController(HttpMethod.Get, Url);
 
             var response = await controller.Get(-1);
             Assert.IsAssignableFrom<NotFoundResult>(response);
@@ -59,7 +61,7 @@ namespace LazyLayer.Examples.WebApi.Test
         [Fact]
         public async Task UpdateTest()
         {
-            var controller = CreateController(HttpMethod.Put, "http://localhost");
+            var controller = CreateController(HttpMethod.Put, Url);
 
             var response = await controller.Put(new Value());
             Assert.IsAssignableFrom<OkResult>(response);
@@ -68,7 +70,7 @@ namespace LazyLayer.Examples.WebApi.Test
         [Fact]
         public async Task DeleteTest()
         {
-            var controller = CreateController(HttpMethod.Delete, "http://localhost");
+            var controller = CreateController(HttpMethod.Delete, Url);
 
             var response = await controller.Delete(1);
             Assert.IsAssignableFrom<OkResult>(response);
