@@ -2,11 +2,10 @@
 <package >
   <metadata>
     <id>LazyLayer.Core</id>
-    <version>1.1.0</version>
+    <version>2.0.0</version>
     <title>LazyLayer</title>
     <authors>Mirza Merdovic</authors>
     <owners>Mirza Merdovic</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
     <projectUrl>https://github.com/MirzaMerdovic/LazyLayer/wiki</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>LazyLayer a common layer for REST APIs</description>
