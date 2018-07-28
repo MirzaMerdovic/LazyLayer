@@ -58,5 +58,9 @@
     <Compile Include="Services\Dispatchers\ServiceDispatcher.cs" />
     <Compile Include="Services\ServiceDispatcherFactory.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="LazyLayer.Core.nuspec" />
+    <None Include="ReleaseNotes.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

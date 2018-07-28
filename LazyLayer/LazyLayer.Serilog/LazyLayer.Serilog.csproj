@@ -67,7 +67,9 @@
     <Compile Include="SerilogSection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LazyLayer.Serilog.nuspec" />
     <None Include="packages.config" />
+    <None Include="ReleaseNotes.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LazyLayer.Core\LazyLayer.Core.csproj">
