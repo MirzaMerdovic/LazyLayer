@@ -67,17 +67,13 @@
     <Compile Include="SerilogSection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LazyLayer.Core\LazyLayer.Core.csproj">
-      <Project>{34095554-6C28-49B2-8F39-E8AE7494F9F2}</Project>
-      <Name>LazyLayer.Core</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LazyLayer.Serilog.nuspec">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-    <None Include="ReleaseNotes.md" />
+    <ProjectReference Include="..\LazyLayer.Core\LazyLayer.Core.csproj">
+      <Project>{B6FAD25A-A566-49CD-86D0-2E68E0F0FD21}</Project>
+      <Name>LazyLayer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

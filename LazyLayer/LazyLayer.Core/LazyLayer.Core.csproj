@@ -1,21 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34095554-6C28-49B2-8F39-E8AE7494F9F2}</ProjectGuid>
+    <ProjectGuid>{B6FAD25A-A566-49CD-86D0-2E68E0F0FD21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LazyLayer.Core</RootNamespace>
     <AssemblyName>LazyLayer.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,35 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Responses\ServiceResponseOfT.cs" />
-    <Compile Include="Responses\ServiceResponse.cs" />
-    <Compile Include="Responses\FailedResponse.cs" />
-    <Compile Include="Responses\IServiceResponseStatus.cs" />
-    <Compile Include="Responses\NotFoundResponse.cs" />
-    <Compile Include="Responses\OkResponse.cs" />
-    <Compile Include="Responses\OkResponseOfT.cs" />
-    <Compile Include="Responses\ResponseStatus.cs" />
-    <Compile Include="Requests\ServiceRequest.cs" />
-    <Compile Include="Requests\ServiceRequestOfT.cs" />
-    <Compile Include="Guard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ILogProvider.cs" />
-    <Compile Include="Providers\NullLogProvider.cs" />
     <Compile Include="Providers\IResponseConversionProvider.cs" />
-    <Compile Include="Services\IServiceDispatcher.cs" />
-    <Compile Include="Services\ServiceDispatcher.cs" />
+    <Compile Include="Providers\NullLogProvider.cs" />
+    <Compile Include="Requests\ServiceRequest.cs" />
+    <Compile Include="Requests\ServiceRequestOfT.cs" />
+    <Compile Include="Responses\IServiceResponse.cs" />
+    <Compile Include="Responses\ServiceResponse.cs" />
+    <Compile Include="Services\Executors\FuncOfTTaskExecutor.cs" />
+    <Compile Include="Services\Executors\FuncOfTTaskOfTExecutor.cs" />
+    <Compile Include="Services\Executors\FuncTaskExecutor.cs" />
+    <Compile Include="Services\Executors\FuncTaskOfTExecutor.cs" />
+    <Compile Include="Services\Executors\IExecutor.cs" />
+    <Compile Include="Services\Dispatchers\IServiceDispatcher.cs" />
+    <Compile Include="Services\Dispatchers\ServiceDispatcher.cs" />
     <Compile Include="Services\ServiceDispatcherFactory.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="LazyLayer.Core.nuspec" />
-    <None Include="ReleaseNotes.md" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

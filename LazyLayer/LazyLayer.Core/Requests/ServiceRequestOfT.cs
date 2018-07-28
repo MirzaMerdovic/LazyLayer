@@ -7,6 +7,11 @@
     public class ServiceRequest<T> : ServiceRequest
     {
         /// <summary>
+        /// Gets or sets <see cref="ServiceRequest{T}"/> content.
+        /// </summary>
+        public T Content { get; }
+
+        /// <summary>
         /// Initializes new instance of <see cref="ServiceRequest{T}"/>.
         /// </summary>
         /// <param name="content"></param>
@@ -14,10 +19,5 @@
         {
             Content = content;
         }
-
-        /// <summary>
-        /// Gets or sets <see cref="ServiceRequest{T}"/> content.
-        /// </summary>
-        public T Content { get; }
     }
 }

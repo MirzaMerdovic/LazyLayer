@@ -5,12 +5,12 @@ namespace LazyLayer.Core.Responses
     /// <summary>
     /// Interface that every service execution result needs to inherit.
     /// </summary>
-    public interface IServiceResponseStatus
+    public interface IServiceResponse
     {
         /// <summary>
-        /// Indicator that tells the status of the result, for example in <see cref="FailedResponse"/> it will be Failure.
+        /// Gets the flag that determines whether the response has content or not (void)
         /// </summary>
-        ResponseStatus Status { get; }
+        bool HasContent { get; }
 
         /// <summary>
         /// <see cref="Guid"/> value that will be used as a correlation identifier for tracking purposes.
@@ -26,5 +26,10 @@ namespace LazyLayer.Core.Responses
         /// Gets or sets response message that user can see.
         /// </summary>
         string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets the exception.
+        /// </summary>
+        Exception Ex {get;set;}
     }
 }

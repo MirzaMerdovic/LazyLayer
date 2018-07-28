@@ -4,6 +4,6 @@ namespace LazyLayer.Core.Providers
 {
     public interface IResponseConversionProvider<out TConvertedResponse>
     {
-        TConvertedResponse ConvertResponse(IServiceResponseStatus response);
+        TConvertedResponse ConvertResponse(IServiceResponse response);
     }
 }

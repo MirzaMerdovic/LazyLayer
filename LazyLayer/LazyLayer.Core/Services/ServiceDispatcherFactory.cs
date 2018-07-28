@@ -1,4 +1,5 @@
 ﻿using LazyLayer.Core.Providers;
+using LazyLayer.Core.Services.Dispatchers;
 
 namespace LazyLayer.Core.Services
 {
@@ -6,7 +7,7 @@ namespace LazyLayer.Core.Services
     {
         public static IServiceDispatcher<T> Create(IResponseConversionProvider<T> convertor)
         {
-            return new ServiceDispatcher<T>(convertor.ConvertResponse);
+            return Create(convertor, null);
         }
 
         public static IServiceDispatcher<T> Create(IResponseConversionProvider<T> convertor, ILogProvider logger)

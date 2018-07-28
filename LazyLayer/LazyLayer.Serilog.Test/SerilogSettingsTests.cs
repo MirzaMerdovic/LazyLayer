@@ -1,5 +1,5 @@
-﻿using System.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Configuration;
 
 namespace LazyLayer.Serilog.Test
 {
